@@ -108,7 +108,7 @@ for k in kRange:
 	#print currentmean	
 	kScore.append(scores.mean())
 	fh=open(projectfolder+"rat","a")
-	fh.write(str(currentmean))
+	fh.write(str(currentmean)+"'")
 	fh.close()
 	t=(time.time() - thistime)/3600.0
 	print("---time required for this iteration : ",t)
