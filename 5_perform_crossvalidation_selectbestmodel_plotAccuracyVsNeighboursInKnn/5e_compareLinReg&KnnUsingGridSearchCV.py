@@ -9,9 +9,9 @@ mfccCoffFolder = '/home/user/Desktop/1/features/mfcc_coeff/'
 
 
 #decide the krange
-n=   #as decided from previous code 
+n= 40  #as decided from previous code 
 wt=''   #uniform or distance as deicded from previous code
-
+folds=5
 
 
 
@@ -39,9 +39,9 @@ for i in range(X.shape[1]):
 
 #s3 find accuracy for knn
 knn = KNeighborsClassifier(n_neighbors=n,weights=wt)
-scores_knn = cross_val_score(knn, xScaled, y, cv=10, scoring='accuracy')
+scores_knn = cross_val_score(knn, xScaled, y, cv=folds, scoring='accuracy')
 print 'Mean accuracy for knn is:'
-print scores.mean()
+print scores_knn.mean()
 
 
 
@@ -50,9 +50,9 @@ print scores.mean()
 from sklearn import linear_model
 # Create linear regression object
 regr = linear_model.LinearRegression()
-scores_regr = cross_val_score(regr, xScaled, y, cv=10, scoring='accuracy')
+scores_regr = cross_val_score(regr, xScaled, y, cv=folds, scoring='accuracy')
 print 'Mean accuracy for linear regression is:'
-print scores.mean()
+print scores_regr.mean()
 
 
 
@@ -61,4 +61,3 @@ if (scores_regr  >scores_knn):
 	print 'linear regression'
 else:
 	print 'KNN'
-
