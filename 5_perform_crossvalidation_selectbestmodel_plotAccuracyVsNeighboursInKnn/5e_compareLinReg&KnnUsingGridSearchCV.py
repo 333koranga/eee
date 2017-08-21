@@ -4,8 +4,9 @@
 
 ############################################################ input and output
 #input folders
-mfccBandFolder = '/home/user/Desktop/1/features/mfcc_bands/'
-mfccCoffFolder = '/home/user/Desktop/1/features/mfcc_coeff/'
+projectfolder='/home/user/Desktop/1/'
+mfccBandFolder = projectfolder + 'features/mfcc_bands/'
+mfccCoffFolder = projectfolder  + 'features/mfcc_coeff/'
 
 
 #decide the krange
@@ -19,7 +20,7 @@ folds=5
 ############################################################
 
 
-
+import numpy as np
 #s1 load bollywoodMusic.npy
 print("1")
 featureMatrix = np.load(mfccCoffFolder + "bollywoodmusic" + ".npy")
@@ -38,7 +39,9 @@ for i in range(X.shape[1]):
 
 
 #s3 find accuracy for knn
-knn = KNeighborsClassifier(n_neighbors=n,weights=wt)
+from sklearn.model_selection import cross_val_score
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=n)
 scores_knn = cross_val_score(knn, xScaled, y, cv=folds, scoring='accuracy')
 print 'Mean accuracy for knn is:'
 print scores_knn.mean()
