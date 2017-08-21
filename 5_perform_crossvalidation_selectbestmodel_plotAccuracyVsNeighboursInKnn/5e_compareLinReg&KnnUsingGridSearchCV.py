@@ -52,7 +52,7 @@ print scores_knn.mean()
 #s4 find accuracy for lin regression
 from sklearn import linear_model
 # Create linear regression object
-regr = linear_model.LinearRegression()
+regr = linear_model.LogisticRegression()
 scores_regr = cross_val_score(regr, xScaled, y, cv=folds, scoring='accuracy')
 print 'Mean accuracy for linear regression is:'
 print scores_regr.mean()
@@ -63,4 +63,4 @@ print 'the better model is'
 if (scores_regr  >scores_knn):
 	print 'linear regression'
 else:
-	print 'KNN'
+print 'KNN'
